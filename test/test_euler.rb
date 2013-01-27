@@ -25,4 +25,8 @@ class EulerTest < Test::Unit::TestCase
   def test_solution_6
     assert_equal 25164150, Euler.solve(6)
   end
+  
+  def test_solution_7
+    assert_equal 104743, Euler.solve(7)
+  end
 end
