@@ -28,3 +28,14 @@ class Fixnum
     end
   end
 end
+
+class Range
+  def sum_squares
+    map { |i| i * i }.reduce(&:+)
+  end
+  
+  def squared_sum
+    sum = reduce(&:+)
+    sum * sum
+  end
+end
