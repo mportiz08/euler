@@ -7,7 +7,7 @@ ruby solutions to Project Euler problems
 - [X] [Problem 1](https://github.com/mportiz08/euler/blob/master/lib/euler/problem_1.rb)
 - [X] [Problem 2](https://github.com/mportiz08/euler/blob/master/lib/euler/problem_2.rb)
 - [X] [Problem 3](https://github.com/mportiz08/euler/blob/master/lib/euler/problem_3.rb)
-- [ ] Problem 4
+- [X] [Problem 4](https://github.com/mportiz08/euler/blob/master/lib/euler/problem_4.rb)
 - [ ] Problem 5
 - [ ] Problem 6
 - [ ] Problem 7
