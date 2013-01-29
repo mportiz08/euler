@@ -5,7 +5,7 @@ module Euler
     include Utils
     
     def solve
-      PrimeGenerator.new.generate(2000000).reduce(:+)
+      PrimeGenerator.new.generate_upto(2000000).reduce(:+)
     end
   end
 end

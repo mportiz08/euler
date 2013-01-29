@@ -1,16 +1,11 @@
-require 'core_ext/numeric'
+require 'euler/utils/prime_generator'
 
 module Euler
   class Problem7
-    # TODO: make much faster
+    include Utils
+    
     def solve
-      found = []
-      i = 2
-      while found.size < 10001
-        found << i if i.prime?
-        i += 1
-      end
-      found.last
+      PrimeGenerator.new.generate(10001).last
     end
   end
 end
