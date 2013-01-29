@@ -10,19 +10,7 @@ module Euler
         i      = primes.last + 2
         
         while i < n
-          test  = true
-          isqrt = Math.sqrt(i)
-          
-          primes.each do |p|
-            break if p > isqrt
-            
-            if (i % p).zero?
-              test = false
-              break
-            end
-          end
-          
-          primes << i if test
+          prime_test(i, primes)
           i += 2
         end
         
@@ -38,23 +26,29 @@ module Euler
         i      = primes.last + 2
         
         while primes.size < n
-          test  = true
-          isqrt = Math.sqrt(i)
-          
-          primes.each do |p|
-            break if p > isqrt
-            
-            if (i % p).zero?
-              test = false
-              break
-            end
-          end
-          
-          primes << i if test
+          prime_test(i, primes)
           i += 2
         end
         
         primes
+      end
+      
+      private
+      
+      def prime_test(i, primes)
+        test  = true
+        isqrt = Math.sqrt(i)
+        
+        primes.each do |p|
+          break if p > isqrt
+          
+          if (i % p).zero?
+            test = false
+            break
+          end
+        end
+        
+        primes << i if test
       end
     end
   end
