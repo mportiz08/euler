@@ -26,8 +26,19 @@ module Euler
       end
     end
     
+    # TODO: figure out how to make this faster
     def solve
-      CollatzSequence.new(13).sequence
+      num_for_size = {}
+      sizes = []
+      
+      (1...1000000).each do |i|
+        size = CollatzSequence.new(i).sequence.size
+        
+        sizes << size
+        num_for_size[size] = i
+      end
+      
+      num_for_size[sizes.max]
     end
   end
 end
