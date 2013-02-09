@@ -99,7 +99,8 @@ module Euler
     end
     
     def solve
-      (0..1000).map { |i| EnglishNumeral.for(i) }
+      numerals = (1..1000).map { |i| EnglishNumeral.for(i) }
+      numerals.join.gsub(/[- ]/, '').size
     end
   end
 end
