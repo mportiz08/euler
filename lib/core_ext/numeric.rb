@@ -27,6 +27,15 @@ class Fixnum
       factors
     end
   end
+  
+  def factorial
+    i, fac = self, self
+    while i > 1
+      fac = fac * (i - 1)
+      i -= 1
+    end
+    fac
+  end
 end
 
 class Range
