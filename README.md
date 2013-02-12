@@ -1,5 +1,7 @@
 # Project Euler
 
+[![Build Status](https://travis-ci.org/mportiz08/euler.png)](https://travis-ci.org/mportiz08/euler)
+
 ruby solutions to Project Euler problems
 
 ## Problems
