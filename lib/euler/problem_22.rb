@@ -9,10 +9,18 @@ module Euler
       names    = raw_data.gsub('"', '').split(',').sort
       
       scores = names.each_with_index.map do |name, i|
-        name.split('').map { |c| c.ord - 'A'.ord + 1 }.reduce(&:+) * (i + 1)
+        name.split('').map do |c|
+          ascii(c) - ascii('A') + 1
+        end.reduce(&:+) * (i + 1)
       end
       
       scores.reduce(&:+)
+    end
+    
+    private
+    
+    def ascii(c)
+      c.unpack('C').first
     end
   end
 end

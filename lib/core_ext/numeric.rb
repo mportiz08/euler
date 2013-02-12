@@ -1,4 +1,4 @@
-class Fixnum
+class Integer
   def prime?
     self > 1 && !(2...self).any? { |i| (self % i).zero? }
   end
