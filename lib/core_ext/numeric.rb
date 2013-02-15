@@ -36,6 +36,16 @@ class Integer
     end
     fac
   end
+  
+  def divisors
+      divs = [1]
+      
+      2.upto(self / 2) do |i|
+        divs << i if (self % i).zero?
+      end
+      
+      divs
+    end
 end
 
 class Range
