@@ -3,7 +3,7 @@ require 'set'
 module Euler
   class Problem21
     def d(n)
-      n.divisors.reduce(&:+)
+      n.proper_divisors.reduce(&:+)
     end
     
     def solve
