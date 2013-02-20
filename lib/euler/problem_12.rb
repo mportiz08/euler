@@ -21,7 +21,7 @@ module Euler
     
     def solve
       triangle_nums = TriangleNumberGenerator.new.generate_until do |nums|
-        !nums.empty? && nums.last.divisors.size > 500
+        nums.last && nums.last.num_divisors > 500
       end
       
       triangle_nums.last

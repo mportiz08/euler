@@ -38,14 +38,31 @@ class Integer
   end
   
   def divisors
-      divs = [1]
-      
-      2.upto(self / 2) do |i|
-        divs << i if (self % i).zero?
-      end
-      
-      divs << self
+    divs = [1]
+    
+    2.upto(self / 2) do |i|
+      divs << i if (self % i).zero?
     end
+    
+    divs << self
+  end
+  
+  def proper_divisors
+    divisors[0..-2]
+  end
+  
+  def num_divisors
+    return self if self == 1
+    
+    count = 2
+    i = 2
+    while i < self.sqrt
+      count += 2 if (self % i).zero?
+      i += 1
+    end
+    
+    count
+  end
 end
 
 class Range
