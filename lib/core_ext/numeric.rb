@@ -44,7 +44,7 @@ class Integer
         divs << i if (self % i).zero?
       end
       
-      divs
+      divs << self
     end
 end
 
