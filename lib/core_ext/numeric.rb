@@ -63,6 +63,12 @@ class Integer
     
     count
   end
+  
+  def choose(k)
+    return 1 if self == k || k == 0
+    
+    self.factorial / (k.factorial * (self - k).factorial)
+  end
 end
 
 class Range
