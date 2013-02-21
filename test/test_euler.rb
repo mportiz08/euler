@@ -58,6 +58,10 @@ class EulerTest < Test::Unit::TestCase
     assert_equal 837799, Euler.solve(14)
   end
   
+  def test_solution_15
+    assert_equal 137846528820, Euler.solve(15)
+  end
+  
   def test_solution_16
     assert_equal 1366, Euler.solve(16)
   end
