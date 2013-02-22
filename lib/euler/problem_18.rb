@@ -9,6 +9,17 @@ module Euler
           rows << line.split.map(&:to_i)
         end
       end
+      
+      def weighted
+        @rows.map do |row|
+          max = row.max
+          row.map { |n| n.to_f / max.to_f }
+        end
+      end
+      
+      def values_from_path(path)
+        @rows.each_with_index.map { |row, i| row[path[i]] }
+      end
     end
     
     def initialize
@@ -29,10 +40,43 @@ module Euler
          63 66 04 68 89 53 67 30 73 16 69 87 40 31
         04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
       NUMS
+      # @triangle = Triangle.new <<-NUMS
+      #      3
+      #     7 4
+      #    2 4 6
+      #   8 5 9 3
+      # NUMS
+    end
+    
+    class PathChooser
+      def best_path(triangle)
+        path = [0]
+        rows = triangle.weighted
+        
+        (1...(rows.size)).each do |i|
+          path << choose_idx_from_row(rows[i], path.last)
+        end
+        
+        path
+      end
+      
+      private
+      
+      def choose_idx_from_row(row, last_idx)
+        scores = []
+        
+        row.each_with_index do |n, i|
+          dist = [(last_idx - i).abs, (last_idx + 1 - i).abs].max
+          scores << (n / dist.to_f)
+        end
+        
+        scores.index(scores.max)
+      end
     end
     
     def solve
-      @triangle.rows
+      path = PathChooser.new.best_path(@triangle)
+      @triangle.values_from_path(path).reduce(&:+)
     end
   end
 end
