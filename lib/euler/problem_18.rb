@@ -20,6 +20,50 @@ module Euler
       def values_from_path(path)
         @rows.each_with_index.map { |row, i| row[path[i]] }
       end
+      
+      def to_s
+        str = ''
+        
+        @rows.each_with_index do |r, i|
+          (@rows.size - 1 - i).times { str << ' ' }
+          
+          r.each do |n|
+            s = "%02d" % n
+            s = "__" unless n == r.max
+            str << "#{s} "
+          end
+          
+          str << "\n"
+        end
+        
+        [super, str].join("\n")
+      end
+    end
+    
+    class PathChooser
+      def best_path(triangle)
+        path = [0]
+        rows = triangle.weighted
+        
+        (1...(rows.size)).each do |i|
+          path << choose_idx_from_row(rows[i], path.last)
+        end
+        
+        path
+      end
+      
+      private
+      
+      def choose_idx_from_row(row, last_idx)
+        scores = []
+        
+        row[last_idx..(last_idx + 1)].each_with_index do |n, i|
+          dist = [(last_idx - i).abs, (last_idx + 1 - i).abs].max
+          scores << (n / dist.to_f)
+        end
+        
+        scores.index(scores.max) + last_idx
+      end
     end
     
     def initialize
@@ -48,33 +92,8 @@ module Euler
       # NUMS
     end
     
-    class PathChooser
-      def best_path(triangle)
-        path = [0]
-        rows = triangle.weighted
-        
-        (1...(rows.size)).each do |i|
-          path << choose_idx_from_row(rows[i], path.last)
-        end
-        
-        path
-      end
-      
-      private
-      
-      def choose_idx_from_row(row, last_idx)
-        scores = []
-        
-        row.each_with_index do |n, i|
-          dist = [(last_idx - i).abs, (last_idx + 1 - i).abs].max
-          scores << (n / dist.to_f)
-        end
-        
-        scores.index(scores.max)
-      end
-    end
-    
     def solve
+      puts @triangle
       path = PathChooser.new.best_path(@triangle)
       @triangle.values_from_path(path).reduce(&:+)
     end
