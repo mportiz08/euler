@@ -21,19 +21,7 @@ module Euler
       end
       
       def best_path
-        sums = @triangle.rows.map { |row| row.map { |n| n } }
-        
-        i = sums.size - 2
-        while i >= 0
-          row   = sums[i]
-          under = sums[i + 1]
-          
-          row.each_with_index do |n, j|
-            n = [n + under[j], n + under[j + 1]].max
-          end
-          
-          i -= 1
-        end
+        sums = create_sums
         
         i, last_idx = 1, 0
         path        = [last_idx]
@@ -53,6 +41,27 @@ module Euler
         end
         
         path
+      end
+      
+      private
+      
+      def create_sums
+        sums = @triangle.rows.map { |row| row.map { |n| n } }
+        
+        i = sums.size - 2
+        while i >= 0
+          row   = sums[i]
+          under = sums[i + 1]
+          
+          row.each_with_index do |n, j|
+            maxsum = [n + under[j], n + under[j + 1]].max
+            row[j] = maxsum
+          end
+          
+          i -= 1
+        end
+        
+        sums
       end
     end
     
@@ -74,19 +83,11 @@ module Euler
          63 66 04 68 89 53 67 30 73 16 69 87 40 31
         04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
       NUMS
-      # @triangle = Triangle.new <<-NUMS
-      #      3
-      #     7 4
-      #    2 4 6
-      #   8 5 9 3
-      # NUMS
     end
     
     def solve
-      path = PathChooser.new(@triangle).best_path
-      puts path.inspect
+      path      = PathChooser.new(@triangle).best_path
       path_vals = @triangle.values_from_path(path)
-      puts path_vals.inspect
       
       path_vals.reduce(&:+)
     end
