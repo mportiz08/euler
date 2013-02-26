@@ -72,7 +72,7 @@ ruby solutions to Project Euler problems
 - [ ] Problem 64
 - [ ] Problem 65
 - [ ] Problem 66
-- [ ] Problem 67
+- [X] [Problem 67](https://github.com/mportiz08/euler/blob/master/lib/euler/problem_67.rb)
 - [ ] Problem 68
 - [ ] Problem 69
 - [ ] Problem 70
