@@ -1,4 +1,4 @@
-require 'date'
+require 'core_ext/date'
 
 module Euler
   class Problem19
