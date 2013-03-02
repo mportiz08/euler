@@ -1,9 +1,10 @@
+require 'core_ext/numeric'
 require 'set'
 
 module Euler
   class Problem21
     def d(n)
-      n.proper_divisors.reduce(&:+)
+      n.proper_divisors.sum
     end
     
     def solve
@@ -21,7 +22,7 @@ module Euler
         end
       end
       
-      pairs.reduce(&:+)
+      pairs.sum
     end
   end
 end

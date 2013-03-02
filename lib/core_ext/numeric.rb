@@ -38,13 +38,18 @@ class Integer
   end
   
   def divisors
-    divs = [1]
-    
-    2.upto(self / 2) do |i|
-      divs << i if (self % i).zero?
+    divs = []
+    i    = 1
+    while i < self.sqrt
+      if (self % i).zero?
+        divs << i
+        divs << (self / i)
+      end
+      
+      i += 1
     end
     
-    divs << self
+    divs.sort
   end
   
   def proper_divisors
@@ -79,5 +84,14 @@ class Range
   def squared_sum
     sum = reduce(&:+)
     sum * sum
+  end
+end
+
+module Enumerable
+  def sum
+    res = reduce(&:+)
+    res = 0 unless res
+    
+    res
   end
 end
