@@ -1,19 +1,25 @@
 require 'core_ext/numeric'
-
+require 'awesome_print'
 module Euler
   class Problem23
     UPPER_LIMIT = 28123
     
     def initialize
-      all, @non_abundant_sums = [], []
+      abundant, @non_abundant_sums = [], []
       
       (0..UPPER_LIMIT).each do |n|
-        all[n] = n.proper_divisors.sum > n
+        abundant[n] = n.proper_divisors.sum > n
         
         abundant_sum_exists = false
-        all[0...n].each_with_index do |abundant, i|
+        
+        i = 0
+        while i < n && !abundant_sum_exists
           j = n - i
-          abundant_sum_exists = true if abundant && all[j]
+          if abundant[i] && abundant[j]
+            abundant_sum_exists = true
+          end
+          
+          i += 1
         end
         
         @non_abundant_sums << n unless abundant_sum_exists
